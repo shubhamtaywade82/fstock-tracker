@@ -1,0 +1,15 @@
+<%= render 'layouts/messages' %>
+
+
+<% @friends.each do |friend| %>
+    <div class="ard card-header result-block col-sm-12 mt-2">
+        <strong class="col-sm">Name: </strong> <%= friend.full_name %>
+        <strong class="col-sm">Email: </strong> <%= friend.email %>
+        <%= link_to 'See profile', '#', class:"btn btn-sm btn-success" %>
+        <% if current_user.are_friends?(friend.id) %>
+            <%= link_to 'Follow friend', friendships_path(friend: friend), class: "btn btn-sm btn-success ml-4", method: :post %>
+        <% else %>
+            <span class="badge badge-secondary"> You already follow this friend</span>
+        <% end %>
+    </div>
+<% end %> 

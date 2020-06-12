@@ -1,0 +1,26 @@
+<table class="table table-bordered table-hover col-sm-12 mt-5">
+     <thead>
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">email</th>
+        <th scope="col">Followed Stocks</th>
+        <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% current_user.friends.each do |friend| %>
+            <tr>
+            <th scope="row"><%= friend.first_name %></th>
+            <td><%= friend.last_name %> </td>
+            <td><%= friend.email %> </td>
+            <td><%= friend.stocks.count %></td>
+            <td class="content-center">
+                
+                <%= link_to 'See profile', '#', class:"btn btn-sm btn-success col-sm-5 ml-4" %>
+                <%= link_to 'Stop following', friendship_path(friend), method: :delete, data: {confirm: "Are you sure"}, class: "btn btn-sm btn-warning col-sm-5" %>
+            </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
